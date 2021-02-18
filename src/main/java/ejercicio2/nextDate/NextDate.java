@@ -34,7 +34,7 @@ public class NextDate {
         if (currentDay > getDaysQuantity(currentMonth) - 1) {
             currentDay = 1;
             int currentMonthIndex = getMonthInt(currentMonth);
-            if (currentMonthIndex == 11) {
+            if (currentMonthIndex == MONTH_LIMIT) {
                 currentMonth = getMonthString(0);
                 currentYear++;
             } else {
