@@ -1,7 +1,5 @@
 package ejercicio2.nextDate;
 
-import javax.security.auth.kerberos.KerberosTicket;
-
 import static ejercicio2.nextDate.Constants.*;
 
 public class NextDate {
