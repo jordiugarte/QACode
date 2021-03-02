@@ -18,4 +18,13 @@ dependencies {
     testImplementation group: 'org.powermock', name: 'powermock-classloading-xstream', version: '2.0.9'
     testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.7.7'
     testImplementation group: 'org.mockito', name: 'mockito-all', version: '2.0.2-beta'
+
+    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '4.3.3'
+    implementation group: 'io.rest-assured', name: 'json-path', version: '4.3.3'
+    implementation group: 'io.rest-assured', name: 'json-schema-validator', version: '4.3.3'
+    implementation group: 'io.rest-assured', name: 'rest-assured-common', version: '4.3.3'
+    implementation group: 'io.rest-assured', name: 'rest-assured-all', version: '4.3.3'
+
+    // Json
+    implementation group: 'org.json', name: 'json', version: '20201115'
 }
