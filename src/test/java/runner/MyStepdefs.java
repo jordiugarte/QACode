@@ -17,19 +17,19 @@ import static org.hamcrest.CoreMatchers.equalTo;
 public class MyStepdefs {
 
     Response response;
-    Map<String, String> data = new HashMap<>();
+    Map<String, String> data= new HashMap<>();
 
-    @Given("I have access to Todo.ly")
+    @Given("yo tengo acceso al Todo.ly")
     public void yoTengoAccesoAlTodoLy() {
         System.out.println("acceso al todo.ly");
     }
 
-    @When("I send a POST request to the url {} with json")
-    public void yoEnvioUnaPeticionPOSTAlUrlHttpTodoLyApiProjectsJsonConJson(String url, String body) {
-        response = given().
+    @When("yo envio una peticion POST al url {} con json")
+    public void yoEnvioUnaPeticionPOSTAlUrlHttpTodoLyApiProjectsJsonConJson(String url,String body) {
+        response =  given().
                 auth().
                 preemptive().
-                basic("upb2021@upb.com", "12345").
+                basic("upb2021@upb.com","12345").
                 contentType(ContentType.JSON).
                 body(body).
                 log().
@@ -40,77 +40,77 @@ public class MyStepdefs {
         response.then().log().all();
     }
 
-    @And("Wait for the response code to be {int}")
+    @And("yo espero que el codigo de respuesta sea {int}")
     public void yoEsperoQueElCodigoDeRespuestaSea(int expectedResult) {
         response.then().
                 statusCode(expectedResult);
     }
 
     @And("yo espero que el nombre del {} sea {string}")
-    public void yoEsperoQueElNombreDelProject(String type, String expectedName) {
+    public void yoEsperoQueElNombreDelProject(String type,String expectedName) {
         response.then().
                 body("Content", equalTo(expectedName));
     }
 
-    @And("Wait for the response body to be")
+    @And("yo espero el response body sea")
     public void yoEsperoElResponseBodySea(String expectedBody) {
-        Assert.assertTrue("ERROR! los json no son iguales", JsonHelper.areEqualJson(replaceAllData(expectedBody), response.getBody().asString()));
+        Assert.assertTrue("ERROR! los json no son iguales" ,JsonHelper.areEqualJson(replaceAllData(expectedBody),response.getBody().asString()));
     }
 
-    @And("I get the {} and I save it in {}")
+    @And("yo obtengo el {} y lo guardo en {}")
     public void yoObtengoElIdYLoGuardoEnID_PROJECT(String property, String nameVar) {
-        data.put(nameVar, response.then().extract().path(property) + "");
+        data.put(nameVar,response.then().extract().path(property)+"");
     }
 
-    @When("I send a PUT petition to the url {} with json")
+    @When("yo envio una peticion PUT al url {} con json")
     public void yoEnvioUnaPeticionPUTAlUrlHttpTodoLyApiProjectsID_PROJECTJsonConJson(String url, String body) {
-        response = given().
-                auth().
-                preemptive().
-                basic("upb2021@upb.com", "12345").
-                contentType(ContentType.JSON).
-                body(body).
-                log().
-                all().
-                when().
-                put(replaceAllData(url));
+        response =  given().
+                        auth().
+                        preemptive().
+                        basic("upb2021@upb.com","12345").
+                        contentType(ContentType.JSON).
+                        body(body).
+                        log().
+                        all().
+                    when().
+                        put(replaceAllData(url));
         response.then().log().all();
     }
 
     @When("yo envio una peticion GET al url {} con json")
     public void yoEnvioUnaPeticionGETAlUrlHttpTodoLyApiProjectsID_PROJECTJsonConJson(String url, String body) {
-        response = given().
-                auth().
-                preemptive().
-                basic("upb2021@upb.com", "12345").
-                contentType(ContentType.JSON).
-                log().
-                all().
-                when().
-                get(replaceAllData(url));
+        response =  given().
+                        auth().
+                        preemptive().
+                        basic("upb2021@upb.com","12345").
+                        contentType(ContentType.JSON).
+                        log().
+                        all().
+                    when().
+                        get(replaceAllData(url));
         response.then().log().all();
 
     }
 
     @When("yo envio una peticion DELETE al url {} con json")
     public void yoEnvioUnaPeticionDELETEAlUrlHttpTodoLyApiProjectsID_PROJECTJsonConJson(String url, String body) {
-        response = given().
-                auth().
-                preemptive().
-                basic("upb2021@upb.com", "12345").
-                contentType(ContentType.JSON).
-                log().
-                all().
-                when().
-                delete(replaceAllData(url));
+        response =  given().
+                        auth().
+                        preemptive().
+                        basic("upb2021@upb.com","12345").
+                        contentType(ContentType.JSON).
+                        log().
+                        all().
+                    when().
+                        delete(replaceAllData(url));
         response.then().log().all();
     }
 
 
-    private String replaceAllData(String value) {
+    private String replaceAllData(String value){
 
-        for (String key : data.keySet()) {
-            value = value.replace(key, data.get(key));
+        for (String key: data.keySet()) {
+            value=value.replace(key,data.get(key));
         }
 
         return value;

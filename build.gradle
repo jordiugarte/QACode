@@ -16,12 +16,6 @@ configurations {
 }
 
 dependencies {
-    testImplementation group: 'org.powermock', name: 'powermock-module-junit4', version: '2.0.9'
-    testImplementation group: 'org.powermock', name: 'powermock-api-mockito2', version: '2.0.9'
-    testImplementation group: 'org.powermock', name: 'powermock-api-easymock', version: '2.0.9'
-    testImplementation group: 'org.powermock', name: 'powermock-classloading-xstream', version: '2.0.9'
-    testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.7.7'
-    testImplementation group: 'org.mockito', name: 'mockito-all', version: '2.0.2-beta'
     testCompile group: 'junit', name: 'junit', version: '4.12'
     // RestAssured
     testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '4.3.3'
@@ -42,15 +36,20 @@ dependencies {
     // Reporte Cucumber
     implementation group: 'net.masterthought', name: 'cucumber-reporting', version: '5.5.2'
 
+
 }
 
+
+//  gradle clean ----------> limpiar la carpeta : build
+// gradle cucumber -------> ejecutar los test
 task cucumber() {
     dependsOn assemble, testClasses
     doLast {
         javaexec {
             main = "io.cucumber.core.cli.Main"
             classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            args = ['--plugin', 'pretty', '--glue', 'runner', 'src/test/resources']
+            //args = ['--plugin','html:build/reports/cucumber/report.html' , '--glue', 'runner', 'src/test/resources']
+            args = ['--plugin','json:build/reports/cucumber/report.json' , '--glue', 'runner', 'src/test/resources']
         }
     }
 }
