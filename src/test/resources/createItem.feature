@@ -1,6 +1,4 @@
-Feature: Project
-
-  @Items
+Feature: Item
   Scenario: As a common user
             I want to create, update and delete an item
             so that i am able to manipulate the it
