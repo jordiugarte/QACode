@@ -36,6 +36,8 @@ dependencies {
     // Reporte Cucumber
     implementation group: 'net.masterthought', name: 'cucumber-reporting', version: '5.5.2'
 
+    // Selenium
+    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
 
 }
 
