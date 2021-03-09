@@ -3,9 +3,9 @@ package testClean;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Test;
-import pomPages.todoLy.LoginModal;
-import pomPages.todoLy.MainPage;
-import pomPages.todoLy.MenuSection;
+import todoLy.LoginModal;
+import todoLy.MainPage;
+import todoLy.MenuSection;
 import singletonSession.Session;
 
 

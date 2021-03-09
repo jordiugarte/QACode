@@ -69,6 +69,67 @@ public class CRUDProjectTest {
 
     }
 
+    @Test
+    public void verify_create_item_todoly() throws InterruptedException {
+        String projectName = "CleanProject";
+        String itemName = "Item";
+
+        Session.getSession().getDriver().get("http://todo.ly/");
+        mainPage.loginImage.click();
+        loginModal.loginAction(user, pwd);
+
+        leftSection.selectProjectButton(projectName).click();
+        centerSection.itemNameTextBox.click();
+        centerSection.itemNameTextBox.clear();
+        centerSection.itemNameTextBox.set(itemName);
+        centerSection.addItemButton.click();
+
+        Thread.sleep(2000);
+        Assert.assertEquals("ERROR !!Item no creado", itemName, centerSection.selectItemButton(itemName).getText());
+    }
+
+    @Test
+    public void verify_update_item_todoly() throws InterruptedException {
+        String projectName = "CleanProject";
+        String itemName = "Item";
+        String newItemName = "NewItem";
+
+        Session.getSession().getDriver().get("http://todo.ly/");
+        mainPage.loginImage.click();
+        loginModal.loginAction(user, pwd);
+
+        leftSection.selectProjectButton(projectName).click();
+        centerSection.selectItemButton(itemName).click();
+        centerSection.itemNameTextBox.clear();
+        centerSection.itemNameTextBox.set(newItemName);
+        centerSection.itemNameTextBox.click();
+        centerSection.itemNameTextBox.clear();
+        centerSection.itemNameTextBox.set(itemName);
+        centerSection.saveItemButton.click();
+
+        Thread.sleep(2000);
+        Assert.assertEquals("ERROR !!Item no actualizado", itemName, centerSection.selectItemButton(itemName).getText());
+    }
+
+
+    @Test
+    public void verify_delete_item_todoly() throws InterruptedException {
+        String projectName = "CleanProject";
+        String itemName = "Item";
+
+        Session.getSession().getDriver().get("http://todo.ly/");
+        mainPage.loginImage.click();
+        loginModal.loginAction(user, pwd);
+
+        leftSection.selectProjectButton(projectName).click();
+        centerSection.selectItemButton(itemName).click();
+        centerSection.itemOptionsButton.click();
+        centerSection.deleteOptionsButton.click();
+
+        Thread.sleep(2000);
+        Assert.assertTrue("ERROR !!Item No Eliminado", !centerSection.selectItemButton(itemName).controlIsDisplayed());
+    }
+
     @After
     public void close() {
         Session.getSession().closeSession();
